@@ -1,0 +1,270 @@
+/* ============================================================
+   PALETTE — deep navy (dark but not black)
+   ============================================================ */
+:root {
+  --sl-color-accent-low:  #0d2138;
+  --sl-color-accent:      #38bdf8;
+  --sl-color-accent-high: #93d0f5;
+}
+
+:root[data-theme='dark'] {
+  /* Backgrounds */
+  --sl-color-bg:          #141e2e;
+  --sl-color-bg-nav:      #0d1623;
+  --sl-color-bg-sidebar:  #101a28;
+
+  /* Gray scale — cool tint */
+  --sl-color-white:   #e4ecf7;
+  --sl-color-gray-1:  #c8d5e8;
+  --sl-color-gray-2:  #96a8c0;
+  --sl-color-gray-3:  #5f7490;
+  --sl-color-gray-4:  #374b62;
+  --sl-color-gray-5:  #223044;
+  --sl-color-gray-6:  #182436;
+  --sl-color-gray-7:  #101a28;
+
+  /* Accent */
+  --sl-color-accent-low:  #0d2138;
+  --sl-color-accent:      #38bdf8;
+  --sl-color-accent-high: #93d0f5;
+
+  /* Borders */
+  --sl-color-hairline-light: rgba(56, 189, 248, 0.07);
+  --sl-color-hairline:       rgba(56, 189, 248, 0.13);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   NAVIGATION / HEADER
+   ============================================================ */
+header.header {
+  border-bottom: 1px solid var(--sl-color-hairline);
+  backdrop-filter: blur(8px);
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar-content details summary {
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+}
+
+/* Active page link */
+.sidebar-content a[aria-current='page'] {
+  border-radius: 0.3rem;
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--sl-color-accent-high);
+}
+
+/* Sidebar links hover */
+.sidebar-content a:not([aria-current='page']):hover {
+  color: var(--sl-color-accent-high);
+}
+
+/* ============================================================
+   CONTENT TYPOGRAPHY
+   ============================================================ */
+.sl-markdown-content {
+  line-height: 1.7;
+}
+
+.sl-markdown-content h2 {
+  border-bottom: 1px solid var(--sl-color-hairline);
+  padding-bottom: 0.35rem;
+  margin-top: 2.5rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+
+.sl-markdown-content h3 {
+  font-size: 1.05rem;
+  color: var(--sl-color-gray-1);
+  margin-top: 1.8rem;
+}
+
+.sl-markdown-content strong {
+  color: var(--sl-color-white);
+}
+
+/* Inline code */
+.sl-markdown-content :not(pre) > code {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.4em;
+  font-size: 0.87em;
+  color: var(--sl-color-accent-high);
+}
+
+/* Horizontal rules */
+.sl-markdown-content hr {
+  border-color: var(--sl-color-hairline);
+  margin: 2rem 0;
+}
+
+/* ============================================================
+   CODE BLOCKS
+   ============================================================ */
+.expressive-code {
+  margin: 1.25rem 0;
+}
+
+.expressive-code pre {
+  font-size: 0.83rem;
+  line-height: 1.6;
+  border-radius: 0.45rem;
+}
+
+:root[data-theme='dark'] .expressive-code .frame {
+  border-color: rgba(56, 189, 248, 0.12) !important;
+  border-radius: 0.45rem;
+  overflow: hidden;
+}
+
+:root[data-theme='dark'] .expressive-code .frame pre {
+  background: #0a1421 !important;
+}
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.sl-markdown-content table {
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  border: 1px solid var(--sl-color-hairline);
+}
+
+.sl-markdown-content thead tr {
+  background: var(--sl-color-bg-nav);
+}
+
+.sl-markdown-content th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sl-color-accent);
+  padding: 0.6rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.sl-markdown-content td {
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--sl-color-hairline-light);
+  color: var(--sl-color-gray-1);
+}
+
+.sl-markdown-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.sl-markdown-content tbody tr:hover {
+  background: rgba(56, 189, 248, 0.04);
+}
+
+/* ============================================================
+   CALLOUTS / ASIDES
+   ============================================================ */
+.starlight-aside {
+  border-radius: 0.4rem;
+  border-left-width: 3px;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  padding: 0.9rem 1.1rem;
+}
+
+.starlight-aside .starlight-aside__title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.sl-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.12em 0.5em;
+  border-radius: 0.2rem;
+}
+
+/* ============================================================
+   CARDS (landing)
+   ============================================================ */
+.card {
+  border-radius: 0.45rem;
+  border-color: var(--sl-color-hairline) !important;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.card:hover {
+  border-color: rgba(56, 189, 248, 0.3) !important;
+  background: rgba(56, 189, 248, 0.03);
+}
+
+.card .sl-flex {
+  gap: 0.6rem;
+}
+
+/* ============================================================
+   HERO — landing page
+   ============================================================ */
+.hero > .sl-flex {
+  gap: 1.8rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero .tagline {
+  color: var(--sl-color-gray-2);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+.pagination-links a {
+  border-radius: 0.35rem;
+  border-color: var(--sl-color-hairline);
+  transition: border-color 0.15s;
+}
+
+.pagination-links a:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+/* ============================================================
+   TABLE OF CONTENTS
+   ============================================================ */
+starlight-toc a {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+starlight-toc a[aria-current='true'] {
+  color: var(--sl-color-accent);
+}

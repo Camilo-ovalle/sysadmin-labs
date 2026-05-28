@@ -1,0 +1,85 @@
+---
+title: SysAdmin Labs - corp.local
+description: Serie de laboratorios progresivos para practicar administración de sistemas con Windows Server, Active Directory y SCCM/MECM.
+template: splash
+hero:
+  tagline: Laboratorios progresivos de Windows Server · Active Directory · SCCM/MECM
+  actions:
+    - text: Empezar por Lab 01
+      link: /labs/lab-01-ad-gpo/
+      icon: right-arrow
+      variant: primary
+    - text: Ver arquitectura
+      link: /arquitectura/
+      icon: information
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Dos fases, ocho laboratorios
+
+<CardGrid stagger>
+  <Card title="Fase 1 — Active Directory" icon="laptop">
+    Labs 01–04: Monta un dominio `corp.local` desde cero, configura GPOs de
+    seguridad, implementa RBAC con AGDLP y automatiza la gestión de usuarios.
+  </Card>
+  <Card title="Fase 2 — SCCM / MECM" icon="setting">
+    Labs 05–08: Instala y configura Microsoft Endpoint Configuration Manager,
+    despliega software, gestiona parches con ADR y automatiza imágenes OS con
+    OSD + PXE.
+  </Card>
+  <Card title="Infraestructura de lab" icon="seti:config">
+    Todo corre sobre VMs locales en una red `192.168.100.0/24`. Fase 1 necesita
+    solo 6–8 GB RAM; Fase 2 requiere 16 GB mínimo.
+  </Card>
+  <Card title="Comandos de diagnóstico" icon="magnifier">
+    Cada lab incluye sección de troubleshooting y los comandos clave:
+    `gpresult`, `dcdiag`, `repadmin` y ciclos de cliente SCCM.
+  </Card>
+</CardGrid>
+
+## Ruta de aprendizaje
+
+<CardGrid>
+  <LinkCard
+    title="Lab 01 — AD DS + GPO"
+    href="/labs/lab-01-ad-gpo/"
+    description="Controlador de dominio, OUs, usuarios y GPO para instalar extensiones Chrome."
+  />
+  <LinkCard
+    title="Lab 02 — GPO Avanzado"
+    href="/labs/lab-02-gpo-avanzado/"
+    description="Loopback Processing, Security Filtering, AppLocker y auditoría de eventos."
+  />
+  <LinkCard
+    title="Lab 03 — Grupos y RBAC"
+    href="/labs/lab-03-grupos-rbac/"
+    description="Estrategia AGDLP, permisos en File Server y delegación de control en OUs."
+  />
+  <LinkCard
+    title="Lab 04 — Usuarios Avanzado"
+    href="/labs/lab-04-usuarios-avanzado/"
+    description="Fine-Grained Password Policies, gMSA y creación masiva desde CSV."
+  />
+  <LinkCard
+    title="Lab 05 — Instalación SCCM"
+    href="/labs/lab-05-sccm-instalacion/"
+    description="SQL Server, prerrequisitos, instalación completa de MECM y configuración inicial."
+  />
+  <LinkCard
+    title="Lab 06 — Despliegue Software"
+    href="/labs/lab-06-sccm-software/"
+    description="Applications, Detection Methods, Collections y despliegues Required vs Available."
+  />
+  <LinkCard
+    title="Lab 07 — Patch Management"
+    href="/labs/lab-07-sccm-patches/"
+    description="SUP + WSUS, Software Update Groups, ADR para Patch Tuesday y Maintenance Windows."
+  />
+  <LinkCard
+    title="Lab 08 — OSD y Task Sequences"
+    href="/labs/lab-08-sccm-osd/"
+    description="PXE Boot, WinPE, captura de imagen de referencia y bare-metal deployment."
+  />
+</CardGrid>
