@@ -620,6 +620,33 @@ Get-AppLockerPolicy -Effective | Test-AppLockerPolicy `
 
 ---
 
+---
+
+## 🎤 Preguntas de Entrevista
+
+**1. ¿Qué es el Loopback Processing y cuándo lo usarías?**
+> Permite que las políticas de `User Configuration` del GPO vinculado a la OU del *equipo* (no del usuario) se apliquen al usuario que inicia sesión en ese equipo. Caso real: kioscos, salas de reunión o laboratorios donde quieres políticas restrictivas independientemente de qué usuario inicia sesión.
+
+**2. ¿Cuál es la diferencia entre Loopback Replace y Loopback Merge?**
+> `Replace`: solo se aplican las políticas de usuario del GPO del equipo, descartando las del usuario. `Merge`: se combinan ambas; si hay conflicto, gana la del equipo.
+
+**3. ¿Qué es Security Filtering en GPO?**
+> Limita a qué objetos (usuarios, equipos, grupos) aplica una GPO dentro de su alcance. Por defecto aplica a "Authenticated Users". Al filtrar por un grupo de seguridad, solo los miembros de ese grupo reciben la política.
+
+**4. Si enlazas una GPO a un dominio y también a una OU hija, y hay conflicto, ¿quién gana?**
+> La GPO de la OU, porque el orden de precedencia LSDOU da más peso a las OUs más cercanas al objeto. A mayor profundidad de OU, mayor prioridad.
+
+**5. ¿Cómo bloqueas la herencia de GPOs en una OU?**
+> Clic derecho en la OU en GPMC → "Block Inheritance". Las GPOs del dominio y sitios superiores no llegarán. Las GPOs con "Enforced" (forzadas) sí penetran el bloqueo.
+
+**6. ¿Qué es AppLocker y en qué se diferencia de SRP (Software Restriction Policies)?**
+> AppLocker (Windows 7+) usa reglas por publisher, path o hash de archivo; es más granular, auditable y soporta reglas por usuario/grupo. SRP es la versión anterior, menos flexible. AppLocker requiere licencia Enterprise.
+
+**7. ¿Cómo diagnosticarías por qué una GPO no se aplica a un equipo?**
+> 1. `gpresult /h report.html` en el cliente → ver si la GPO aparece en "Denied GPOs" y el motivo. 2. Verificar que el equipo está en la OU correcta. 3. Revisar Security Filtering. 4. Comprobar que SYSVOL replica correctamente con `repadmin /showrepl`. 5. Revisar Event Viewer → Group Policy en el cliente.
+
+---
+
 ## Próximo Paso
 
 **Lab 03 — Grupos AD y Control de Acceso Basado en Roles (RBAC)**  

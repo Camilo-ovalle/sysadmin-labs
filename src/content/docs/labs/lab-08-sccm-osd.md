@@ -568,3 +568,25 @@ Con todos estos labs completados tienes un entorno sólido de SysAdmin. Para con
 | **DHCP Failover** | Windows Server | Alta disponibilidad para el servicio DHCP |
 | **DFS Namespaces** | Windows Server | Espacio de nombres distribuido para recursos compartidos |
 | **Certificate Services** | AD CS | PKI interna para HTTPS en SCCM y otros servicios |
+
+---
+
+## 🎤 Preguntas de Entrevista
+
+**1. ¿Qué es PXE Boot y cómo funciona?**
+> Pre-eXecution Environment: permite arrancar un equipo sin SO desde la red. El equipo hace broadcast DHCP con flag PXE, el servidor DHCP responde con la IP del servidor PXE (SCCM/WDS), el equipo descarga la Boot Image (WinPE) vía TFTP y arranca. Requiere que el DHCP tenga opciones 66 y 67 configuradas apuntando a SCCM.
+
+**2. ¿Qué es WinPE y cuál es su función en OSD?**
+> Windows Preinstallation Environment: un SO mínimo de Windows que arranca en memoria RAM antes de instalar el sistema final. Contiene el agente SCCM y los drivers necesarios para comunicarse con el servidor, acceder al disco y ejecutar la Task Sequence.
+
+**3. ¿Qué diferencia hay entre un OS Image y un OS Upgrade Package en SCCM?**
+> `OS Image`: archivo WIM capturado de una máquina de referencia o descargado de Microsoft; se usa para bare-metal. `OS Upgrade Package`: el contenido de la ISO de actualización de Windows; se usa para Task Sequences de upgrade in-place (ej: Win 10 1909 → Win 11).
+
+**4. ¿Qué es USMT y cuándo se usa?**
+> User State Migration Tool: captura el perfil del usuario (documentos, favoritos, configuraciones, aplicaciones) antes de reinstalar Windows y los restaura después. Se usa en Task Sequences de OS Refresh para que el usuario no pierda sus datos.
+
+**5. ¿Cómo harías el despliegue de Windows en 100 equipos nuevos simultáneamente?**
+> Con una Task Sequence bare-metal en SCCM: los equipos arrancan por PXE, reciben WinPE, la TS instala Windows, aplica parches, instala software base, une el equipo al dominio y lo asigna a la OU correcta. Todo automatizado, sin intervención humana después del primer arranque.
+
+**6. ¿Qué harías si una Task Sequence falla a mitad de la instalación?**
+> La TS queda en error con un código (SMSTS.log es el log principal). Revisar `SMSTS.log` en `C:\Windows\Temp\SMSTSLog\` o en WinPE `X:\Windows\Temp\SMSTSLog\`. Los errores más comunes: contenido no descargado al DP, driver faltante para el controlador de disco/red, o credenciales de unión al dominio incorrectas.

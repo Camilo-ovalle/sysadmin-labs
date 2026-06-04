@@ -482,6 +482,30 @@ Get-WmiObject -Namespace root\ccm\softmgmt\updatescompliance -Class SMS_UpdatesA
 
 ---
 
+---
+
+## 🎤 Preguntas de Entrevista
+
+**1. ¿Qué es WSUS y cuál es su relación con SCCM?**
+> Windows Server Update Services descarga actualizaciones de Microsoft y las distribuye localmente. En SCCM, el rol SUP (Software Update Point) se instala sobre WSUS y lo gestiona desde la consola de SCCM. Los clientes SCCM reportan compliance y reciben parches via el agente SCCM, no el cliente WSUS clásico.
+
+**2. ¿Qué es un Automatic Deployment Rule (ADR)?**
+> Una regla que automáticamente descarga y despliega actualizaciones según criterios (clasificación, producto, severidad, Patch Tuesday). Ideal para parches de seguridad mensuales: se configura una vez y cada mes aplica los parches automáticamente a las colecciones target.
+
+**3. ¿Qué son las Maintenance Windows y por qué son importantes?**
+> Son ventanas de tiempo en las que SCCM puede instalar actualizaciones y reiniciar equipos en una colección. Sin ellas, los parches podrían reiniciar equipos en horario laboral. Ejemplo: "Sábados de 02:00 a 06:00 am".
+
+**4. ¿Qué es el ciclo de Patch Tuesday?**
+> Microsoft libera parches el segundo martes de cada mes. El flujo en SCCM: sincronización ADR → descarga de contenido al DP → despliegue a colecciones de prueba (1ª semana) → despliegue a producción (2ª semana), respetando Maintenance Windows.
+
+**5. ¿Cómo verificas el compliance de parches en SCCM?**
+> En la consola: `Monitoring` → `Software Update Compliance`. También con reportes SQL: `All Software Updates Compliance` o por colección/actualización específica. En el cliente: `WindowsUpdate.log` y `WUAHandler.log`.
+
+**6. ¿Cómo harías rollback de un parche problemático?**
+> En SCCM: crear un despliegue de "Uninstall" de la actualización a la colección afectada. Para parches críticos del sistema, el rollback puede requerir una backup previa del estado del sistema o restaurar desde punto de restauración/snapshot VM.
+
+---
+
 ## Próximo Paso
 
 **Lab 08 — SCCM: OSD y Task Sequences**  

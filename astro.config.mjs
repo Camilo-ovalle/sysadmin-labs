@@ -6,7 +6,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'SysAdmin Labs',
-			description: 'Laboratorios progresivos de Windows Server, Active Directory y SCCM/MECM para corp.local.',
+			description: 'Laboratorios progresivos de SysAdmin: Windows Server, AD, DNS, DHCP, networking, scripting, cloud y Linux.',
 			defaultLocale: 'es',
 			locales: {
 				root: {
@@ -24,6 +24,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Bienvenida', slug: 'index' },
 						{ label: 'Arquitectura y Ruta', slug: 'arquitectura' },
+						{ label: '🎤 Banco de Preguntas', slug: 'preguntas' },
 					],
 				},
 				{
@@ -36,7 +37,7 @@ export default defineConfig({
 					],
 				},
 				{
-					label: 'Fase 1 — Active Directory',
+					label: 'Fase 1 — Active Directory y GPO',
 					collapsed: false,
 					items: [
 						{ label: 'Lab 01: AD + GPO', slug: 'labs/lab-01-ad-gpo' },
@@ -46,13 +47,64 @@ export default defineConfig({
 					],
 				},
 				{
-					label: 'Fase 2 — SCCM / MECM',
+					label: 'Fase 2 — Servicios de Red Windows Server',
 					collapsed: false,
+					items: [
+						{ label: 'Lab DNS: Windows DNS Server', slug: 'redes/win-dns' },
+						{ label: 'Lab DHCP: Windows DHCP Server', slug: 'redes/win-dhcp' },
+					],
+				},
+				{
+					label: 'Fase 3 — Networking',
+					collapsed: false,
+					items: [
+						{ label: 'NET-01: OSI y Diagnóstico', slug: 'redes/net-01-osi-diagnostico' },
+						{ label: 'NET-02: VLANs', slug: 'redes/net-02-vlans' },
+						{ label: 'NET-03: Wi-Fi y SSIDs', slug: 'redes/net-03-wifi-ssid' },
+						{ label: 'NET-04: Firewalls', slug: 'redes/net-04-firewalls' },
+					],
+				},
+				{
+					label: 'Fase 4 — Dominio Híbrido y Cloud',
+					collapsed: false,
+					items: [
+						{ label: 'Híbrido: AD + Entra ID', slug: 'hibrido/hibrido-entra' },
+						{ label: 'Cloud: AWS Fundamentos', slug: 'cloud/cloud-aws' },
+						{ label: 'Cloud: Azure Fundamentos', slug: 'cloud/cloud-azure' },
+					],
+				},
+				{
+					label: 'Fase 5 — SCCM / MECM',
+					collapsed: true,
 					items: [
 						{ label: 'Lab 05: Instalación SCCM', slug: 'labs/lab-05-sccm-instalacion' },
 						{ label: 'Lab 06: Despliegue Software', slug: 'labs/lab-06-sccm-software' },
 						{ label: 'Lab 07: Patch Management', slug: 'labs/lab-07-sccm-patches' },
-						{ label: 'Lab 08: OSD y Task Sequences', slug: 'labs/lab-08-sccm-osd' },
+						{ label: 'Lab 08: OSD y Task Seq.', slug: 'labs/lab-08-sccm-osd' },
+					],
+				},
+				{
+					label: 'Fase 6 — Scripting y Automatización',
+					collapsed: false,
+					items: [
+						{ label: 'Script: PowerShell', slug: 'scripting/ps-powershell' },
+						{ label: 'Script: Bash', slug: 'scripting/bash-scripting' },
+					],
+				},
+				{
+					label: 'Fase 7 — Operaciones',
+					collapsed: false,
+					items: [
+						{ label: 'Ops: Monitoreo', slug: 'ops/ops-monitoreo' },
+						{ label: 'Ops: Backups y Rollback', slug: 'ops/ops-backups' },
+						{ label: 'Ops: ITIL v4', slug: 'ops/ops-itil' },
+					],
+				},
+				{
+					label: 'Fase 8 — Linux',
+					collapsed: false,
+					items: [
+						{ label: 'Linux: Administración', slug: 'linux/linux-administracion' },
 					],
 				},
 			],

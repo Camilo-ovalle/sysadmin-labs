@@ -584,6 +584,30 @@ Esta cuenta se usa cuando los clientes necesitan descargar contenido del DP sin 
 
 ---
 
+---
+
+## 🎤 Preguntas de Entrevista
+
+**1. ¿Qué es SCCM/MECM y qué problemas resuelve en una organización?**
+> Microsoft Endpoint Configuration Manager centraliza el despliegue de software y OS, gestión de parches, inventario de hardware/software y configuración de compliance en toda la flota de equipos Windows. Sin SCCM tendrías que visitar cada equipo manualmente.
+
+**2. ¿Cuál es la diferencia entre SCCM y Microsoft Intune?**
+> SCCM es on-premise, ideal para entornos con equipos en la red corporativa. Intune es cloud (Azure), ideal para equipos remotos o BYOD. En entornos híbridos se usa "Co-Management": SCCM gestiona lo que está en la red, Intune lo que está en cloud.
+
+**3. ¿Qué es el Distribution Point (DP) en SCCM?**
+> Servidor que almacena el contenido (instaladores, actualizaciones, imágenes OS) y lo distribuye a los clientes. En redes con múltiples sitios, se pone un DP en cada sitio para que los clientes descarguen localmente sin saturar el WAN.
+
+**4. ¿Qué prerrequisitos necesita SCCM antes de instalarse?**
+> AD DS funcional, extensión del schema de AD (Extend Schema), SQL Server, IIS, Windows ADK, roles de Windows Server (BITS, Remote Differential Compression), cuenta de servicio con permisos adecuados, y un boundary group configurado.
+
+**5. ¿Cómo se instala el cliente de SCCM en los equipos?**
+> Varios métodos: Push automático desde consola SCCM (Client Push Installation), GPO, script, imagen OSD, o manualmente con `ccmsetup.exe`. El push es el más común en entornos donde ya tienes AD.
+
+**6. ¿Qué son los Boundaries y Boundary Groups en SCCM?**
+> Los Boundaries definen rangos de red (subredes, AD Sites, rangos IP). Los Boundary Groups agrupan Boundaries y los asocian a Distribution Points y Management Points. Los clientes usan los Boundary Groups para saber de qué DP descargar y a qué MP reportar.
+
+---
+
 ## Próximo Paso
 
 **Lab 06 — SCCM: Despliegue de Software**  

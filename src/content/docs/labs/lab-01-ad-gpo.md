@@ -351,3 +351,33 @@ Get-GPInheritance -Target "OU=Contabilidad,DC=corp,DC=local"
 # Diagnóstico de políticas de Chrome
 # (ejecutar en el cliente, luego revisar chrome://policy)
 ```
+
+---
+
+## 🎤 Preguntas de Entrevista
+
+Preguntas frecuentes sobre AD DS y GPOs básicas para entrevistas de SysAdmin:
+
+**1. ¿Qué es Active Directory y para qué sirve?**
+> Es el servicio de directorio de Microsoft que centraliza la autenticación (Kerberos/LDAP), gestión de usuarios/equipos/políticas y recursos en un dominio. Permite gestionar miles de equipos desde un punto central.
+
+**2. ¿Cuántos Domain Controllers necesitas mínimo en producción y por qué?**
+> Mínimo 2. Si el DC principal cae, el segundo asume; sin redundancia, todos los logins y GPOs fallan. Se recomienda uno por sitio físico en organizaciones distribuidas.
+
+**3. ¿Qué diferencia hay entre una OU y un grupo en AD?**
+> Las OUs son contenedores para organizar objetos y aplicar GPOs; los grupos son para asignar permisos a recursos. No se puede aplicar una GPO directamente a un grupo de seguridad (solo a OUs, sitios y el dominio).
+
+**4. ¿Cuál es la diferencia entre `Computer Configuration` y `User Configuration` en una GPO?**
+> `Computer Configuration` se aplica al equipo al arrancar (sin importar quién inicia sesión). `User Configuration` se aplica al usuario al hacer login. Para que ambas funcionen debes ubicar bien los objetos: equipos en sus OUs, usuarios en las suyas.
+
+**5. ¿Qué es el orden de aplicación de GPOs (LSDOU) y cómo afecta el resultado?**
+> Se aplican en este orden: Local → Site → Domain → OU (y OUs anidadas). El último en aplicar "gana" en caso de conflicto. Una GPO de OU sobrescribe la del dominio para la misma configuración.
+
+**6. ¿Cómo verificarías que una GPO se aplicó correctamente en un cliente?**
+> `gpresult /r` para resumen, `gpresult /h C:\report.html` para reporte HTML completo, o `chrome://policy` para políticas de Chrome. También `rsop.msc` para visualizar la política resultante.
+
+**7. ¿Qué es el SYSVOL y cuál es su función?**
+> Es una carpeta compartida en todos los DCs que contiene los archivos de GPO (plantillas ADMX, scripts de inicio/logon). Se replica entre DCs vía DFSR. Si SYSVOL no replica, las GPOs dejan de funcionar en sitios remotos.
+
+**8. ¿Qué hace `gpupdate /force`?**
+> Fuerza la re-descarga y reaplicación de todas las GPOs inmediatamente, sin esperar el intervalo automático (90 min para usuarios, 5 min para DCs). Útil durante pruebas para no esperar el ciclo normal.

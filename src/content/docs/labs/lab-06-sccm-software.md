@@ -478,6 +478,30 @@ En `Administration > Site Configuration > Sites > Site Properties > Client Setti
 
 ---
 
+---
+
+## 🎤 Preguntas de Entrevista
+
+**1. ¿Cuál es la diferencia entre un Package y una Application en SCCM?**
+> `Application` es el método moderno: tiene Detection Method (verifica si ya está instalado), puede reemplazar versiones anteriores (Supersedence), y puede apuntar a usuarios o equipos. `Package` es el método legacy para scripts y herramientas sin instalador estándar; no detecta si ya está instalado.
+
+**2. ¿Qué es un Detection Method y por qué es crítico?**
+> Le indica a SCCM cómo verificar si una aplicación ya está instalada (clave de registro, archivo, versión de MSI). Sin él, SCCM no puede saber si reinstalar o no, causando re-instalaciones innecesarias.
+
+**3. ¿Cuál es la diferencia entre un despliegue Required y uno Available?**
+> `Required`: se instala automáticamente en la fecha/hora configurada, sin intervención del usuario. `Available`: aparece en el Software Center para que el usuario lo instale cuando quiera. Para parches de seguridad críticos, siempre Required.
+
+**4. ¿Qué son las Collections y cómo las usas?**
+> Son agrupaciones dinámicas o estáticas de dispositivos o usuarios basadas en reglas (query WQL, membresía directa, basada en otras colecciones). Son el target de todos los despliegues. Ejemplo: "All Windows 10 Workstations", "Finance Department Computers".
+
+**5. ¿Cómo diagnosticarías un despliegue de software fallido en SCCM?**
+> 1. Revisar el reporte de compliance del despliegue en la consola. 2. En el cliente: revisar `AppEnforce.log`, `AppDiscovery.log`, `CAS.log`, `ContentTransferManager.log`. 3. Verificar que el contenido está distribuido al DP correcto. 4. Revisar que el cliente esté en el Boundary Group correcto.
+
+**6. ¿Qué es el Software Center?**
+> La aplicación instalada por el cliente SCCM que permite a los usuarios ver e instalar software Available, ver estado de despliegues Required y reiniciar/actualizar cuando sea necesario. Es la interfaz del usuario final con SCCM.
+
+---
+
 ## Próximo Paso
 
 **Lab 07 — SCCM: Patch Management con Software Update Point (SUP)**  

@@ -642,6 +642,30 @@ _Admin
 
 ---
 
+---
+
+## 🎤 Preguntas de Entrevista
+
+**1. ¿Qué diferencia hay entre Security Group y Distribution Group en AD?**
+> `Security Group` se usa para asignar permisos a recursos (carpetas, impresoras, GPOs). `Distribution Group` solo sirve para listas de correo en Exchange; no puede recibir permisos NTFS ni GPOs.
+
+**2. ¿Qué es AGDLP y por qué es la estrategia recomendada de Microsoft?**
+> Account → Global Group → Domain Local Group → Permission. Los usuarios se meten en Global Groups (por rol/departamento), los Global Groups en Domain Local Groups (por recurso), y los DL Groups reciben los permisos NTFS. Esto permite escalar en entornos multi-dominio y cambiar permisos a nivel de grupo, no usuario por usuario.
+
+**3. ¿Qué tipos de alcance de grupo existen y cuándo usas cada uno?**
+> `Universal`: puede contener cuentas de cualquier dominio del bosque; úsalos con moderación pues se replican al Global Catalog. `Global`: cuentas del mismo dominio; ideal para agrupar usuarios por departamento. `Domain Local`: puede contener cuentas de cualquier dominio; ideal para asignar permisos a recursos.
+
+**4. ¿Cómo delegas administración de una OU a un técnico sin darle permisos de Domain Admin?**
+> Clic derecho en la OU en ADUC → "Delegate Control" → asignar las tareas específicas (crear/eliminar usuarios, resetear contraseñas, etc.) al usuario o grupo técnico. Esto aplica permisos ACL en el objeto de AD sin elevar privilegios globales.
+
+**5. ¿Qué es RBAC y cómo lo implementas en AD?**
+> Role-Based Access Control: cada rol tiene un grupo de seguridad; los usuarios se añaden al grupo de su rol; los grupos reciben los permisos. Cambiar los permisos de un rol solo requiere modificar el grupo, no cada usuario individualmente.
+
+**6. ¿Cuál es la diferencia entre permisos de Share y permisos NTFS?**
+> Los permisos de Share aplican cuando se accede por red; los NTFS aplican siempre (red y local). El acceso efectivo es la intersección de ambos (el más restrictivo gana). La práctica recomendada es dar `Full Control` en Share y gestionar todo con NTFS.
+
+---
+
 ## Próximo Paso
 
 **Lab 04 — Gestión Avanzada de Usuarios: Fine-Grained Password Policies, MSAs y Automatización**  

@@ -633,6 +633,30 @@ Get-ADUser -Filter * -Properties Department |
 
 ---
 
+---
+
+## 🎤 Preguntas de Entrevista
+
+**1. ¿Para qué sirven las Fine-Grained Password Policies (PSO)?**
+> Permiten tener políticas de contraseña diferentes por grupo o usuario dentro del mismo dominio. Ejemplo: administradores con contraseña de 16 chars y expiración de 60 días, usuarios normales con 12 chars y 90 días.
+
+**2. ¿Qué es una gMSA y cuándo la usarías en lugar de una cuenta de servicio normal?**
+> Group Managed Service Account: AD gestiona automáticamente su contraseña (120 chars aleatorios, rota cada 30 días) sin que nadie la conozca. Se usa para servicios Windows (IIS, SQL Agent, SCCM) donde antes ponías una cuenta con contraseña fija que nunca cambiabas por miedo a romper el servicio.
+
+**3. ¿Cómo crearías 200 usuarios en AD de forma automatizada?**
+> Preparando un CSV con los campos (Name, SamAccountName, OU, Department, etc.) y usando un script PowerShell con `Import-Csv` + `New-ADUser` en un loop. Ejemplo: `Import-Csv users.csv | ForEach-Object { New-ADUser -Name $_.Name -Path $_.OU ... }`.
+
+**4. ¿Cómo auditarías logins fallidos en AD?**
+> Habilitando la política "Audit Logon Events" en GPO → Computer Configuration → Windows Settings → Security Settings → Advanced Audit Policy. Luego revisar Event Viewer en el DC → Security → Event ID 4625 (login fallido) o Event ID 4740 (cuenta bloqueada).
+
+**5. ¿Qué harías si un usuario dice que su cuenta está bloqueada?**
+> 1. `Search-ADAccount -LockedOut` para encontrar cuentas bloqueadas. 2. Identificar en qué DC se bloqueó con `Get-ADUser -Identity <usuario> -Properties LockedOut,BadLogonCount,BadPasswordTime`. 3. `Unlock-ADAccount -Identity <usuario>`. 4. Si se repite, revisar el equipo del usuario por malware o credenciales cachadas incorrectas.
+
+**6. ¿Cómo limpias cuentas inactivas de AD?**
+> `Search-ADAccount -AccountInactive -TimeSpan 90` para listar cuentas sin login en 90 días. Las deshabilitas primero (`Disable-ADAccount`), las mueves a una OU "Deshabilitados" y después de 30 días las eliminas. Nunca borrar directamente sin un período de gracia.
+
+---
+
 ## Próximo Paso
 
 **Lab 05 — Instalación y Configuración de SCCM/MECM**  
