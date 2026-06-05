@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
+	site: 'https://camilo-ovalle.github.io',
+	base: '/sysadmin-labs',
 	integrations: [
 		starlight({
 			title: 'SysAdmin Labs',
@@ -15,7 +17,7 @@ export default defineConfig({
 				},
 			},
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/Camilo-ovalle/sysadmin-labs' },
 			],
 			customCss: ['./src/styles/custom.css'],
 			sidebar: [
